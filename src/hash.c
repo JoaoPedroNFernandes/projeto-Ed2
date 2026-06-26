@@ -3,6 +3,37 @@
 #include <string.h>
 #include "hash.h"
 
+#define TAMANHO_PADRAO 101
+
+void inicializarTabelaHash(Hash *hash) {
+    hash->buckets = (NoHash **) calloc((size_t) TAMANHO_PADRAO, sizeof(NoHash *));
+    hash->tamanho = TAMANHO_PADRAO;
+    hash->num_elementos = 0;
+    hash->colisoes = 0UL;
+}
+
+int inserir(Hash *hash, const char *chave) {
+    return hash_inserir(hash, chave);
+}
+
+int buscar(Hash *hash, const char *chave) {
+    return hash_buscar(hash, chave);
+}
+
+void liberarTabelaHash(Hash *hash) {
+    if (hash == NULL) return;
+    for (int i = 0; i < hash->tamanho; i++) {
+        NoHash *atual = hash->buckets[i];
+        while (atual != NULL) {
+            NoHash *proximo = atual->proximo;
+            free(atual->chave);
+            free(atual);
+            atual = proximo;
+        }
+    }
+    free(hash->buckets);
+}
+
 static char *duplicar_string(const char *origem) {
     if (origem == NULL) {
         return NULL;
