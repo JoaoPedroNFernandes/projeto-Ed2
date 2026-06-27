@@ -23,6 +23,12 @@ typedef struct {
     double media_elementos_por_bucket_ocupado;
 } EstatisticasHash;
 
+typedef TabelaHash Hash;
+void inicializarTabelaHash(Hash *hash);
+int inserir(Hash *hash, const char *chave);
+int buscar(Hash *hash, const char *chave);
+void liberarTabelaHash(Hash *hash);
+
 TabelaHash *hash_criar(int tamanho);
 
 void hash_destruir(TabelaHash *tabela);
