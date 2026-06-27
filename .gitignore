@@ -1,0 +1,19 @@
+# Binários compilados
+src/main
+data/gerar
+
+# Dados gerados
+data/usuarios1000.txt
+data/usuarios10000.txt
+data/usuarios100000.txt
+
+# Arquivos temporários do LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Fonte do relatório (entrega só o PDF)
+relatorio.tex
+logo_ufersa.png
